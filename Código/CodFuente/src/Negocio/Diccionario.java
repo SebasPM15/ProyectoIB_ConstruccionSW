@@ -47,16 +47,16 @@ public class Diccionario {
         diccionarioBraille.put('ú', "⠾");
 
         // Números
-        diccionarioBraille.put('1', "⠼⠁");
-        diccionarioBraille.put('2', "⠼⠃");
-        diccionarioBraille.put('3', "⠼⠉");
-        diccionarioBraille.put('4', "⠼⠙");
-        diccionarioBraille.put('5', "⠼⠑");
-        diccionarioBraille.put('6', "⠼⠋");
-        diccionarioBraille.put('7', "⠼⠛");
-        diccionarioBraille.put('8', "⠼⠓");
-        diccionarioBraille.put('9', "⠼⠊");
-        diccionarioBraille.put('0', "⠼⠚");
+        diccionarioBraille.put('1', "⠁");
+        diccionarioBraille.put('2', "⠃");
+        diccionarioBraille.put('3', "⠉");
+        diccionarioBraille.put('4', "⠙");
+        diccionarioBraille.put('5', "⠑");
+        diccionarioBraille.put('6', "⠋");
+        diccionarioBraille.put('7', "⠛");
+        diccionarioBraille.put('8', "⠓");
+        diccionarioBraille.put('9', "⠊");
+        diccionarioBraille.put('0', "⠚");
 
         // Signos de puntuación
         diccionarioBraille.put('.', "⠲");
@@ -71,13 +71,32 @@ public class Diccionario {
         diccionarioBraille.put('-', "⠤");
         diccionarioBraille.put('\'', "⠄");
         diccionarioBraille.put('/', "⠌");
+        diccionarioBraille.put(' ', "   ");
     }
 
     public String transcribirEspBraille(String texto) {
-        StringBuilder resultado = new StringBuilder();
-        for (char c : texto.toLowerCase().toCharArray()) {
-            resultado.append(diccionarioBraille.getOrDefault(c, " "));
+StringBuilder braille = new StringBuilder();
+        boolean esNumeroAnterior = false; // Para controlar la inserción del prefijo numérico
+
+        for (int i = 0; i < texto.length(); i++) {
+            char ch = texto.charAt(i);
+
+            if (Character.isUpperCase(ch)) {
+               braille.append("⠨");
+            }
+
+            if (Character.isDigit(ch)) {
+                if (!esNumeroAnterior) {
+                    braille.append("⠼"); // Añadir el prefijo numérico al inicio de una secuencia de números
+                    esNumeroAnterior = true;
+                }
+            } else {
+                esNumeroAnterior = false; // Resetear cuando ya no es un dígito
+            }
+
+            braille.append(diccionarioBraille.getOrDefault(Character.toLowerCase(ch), " ")); // Añadir la traducción de braille en minúsculas
         }
-        return resultado.toString();
+
+        return braille.toString();
     }
 }
