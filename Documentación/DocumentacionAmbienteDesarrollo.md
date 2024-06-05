@@ -23,6 +23,6 @@
 3. **Configurar el Proyecto en Apache NetBeans:**
    - Clona el repositorio del proyecto:
      ```sh
-     git clone https://github.com/tu_usuario/transcripcion-braille.git
+     https://github.com/SebasPM15/ProyectoIB_ConstruccionSW.git
      ```
    - Abre el proyecto en Apache NetBeans.
