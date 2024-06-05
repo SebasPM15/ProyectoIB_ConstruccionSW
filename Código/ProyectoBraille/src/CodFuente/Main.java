@@ -1,29 +1,29 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package Negocio;
+package CodFuente;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class GUI {
-    private boolean imagenSenalGuardada = false;
-    private boolean imagenEspejoGuardada = false;
-    private Transcriptor transcriptor;
+public class Main {
+    private static boolean imagenSenalGuardada = false;
+    private static boolean imagenEspejoGuardada = false;
 
-    public GUI() {
-        transcriptor = new Transcriptor();
-        createAndShowGUI();
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(Main::createAndShowGUI);
     }
 
-    private void createAndShowGUI() {
+    private static void createAndShowGUI() {
         JFrame frame = new JFrame("Transcripción Braille");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 600);
@@ -64,9 +64,11 @@ public class GUI {
         frame.getContentPane().add(panel);
         frame.setVisible(true);
 
+        Usuario usuario = new Usuario();
+
         transcribirButton.addActionListener(e -> {
             String textoEsp = inputField.getText();
-            String textoBraille = transcriptor.transcribirEspBraille(textoEsp);
+            String textoBraille = usuario.transcribirEspBraille(textoEsp);
             outputArea.setText(textoBraille);
 
             String textoBrailleEspejo = new StringBuilder(textoBraille).reverse().toString();
@@ -82,7 +84,7 @@ public class GUI {
                 return;
             }
             String textoBraille = outputArea.getText();
-            BufferedImage senal = transcriptor.generarSenalizacion(textoBraille);
+            BufferedImage senal = usuario.generarSenalizacion(textoBraille);
             guardarImagen(senal, "senal", "Señalización Braille guardada exitosamente.");
             imagenSenalGuardada = true;
         });
@@ -93,7 +95,7 @@ public class GUI {
                 return;
             }
             String textoBraille = outputArea.getText();
-            BufferedImage espejo = transcriptor.imprimirTextoEspejo(textoBraille);
+            BufferedImage espejo = usuario.imprimirTextoEspejo(textoBraille);
             guardarImagen(espejo, "espejo", "Texto en Espejo guardado exitosamente.");
             imagenEspejoGuardada = true;
         });
@@ -109,7 +111,7 @@ public class GUI {
         });
     }
 
-    private void guardarImagen(BufferedImage imagen, String nombreBase, String mensajeExito) {
+    private static void guardarImagen(BufferedImage imagen, String nombreBase, String mensajeExito) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Guardar Imagen");
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
