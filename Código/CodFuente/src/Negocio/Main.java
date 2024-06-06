@@ -7,12 +7,16 @@ package Negocio;
 import GUI.MENU;
 
 /**
- *
- * @author pilco
+ * Clase principal que contiene el método main para iniciar la aplicación.
  */
 public class Main {
+    /**
+     * Método principal que inicia la aplicación.
+     * Crea una instancia del menú principal y lo hace visible.
+     *
+     * @param args Los argumentos de la línea de comandos (no se utilizan en este caso).
+     */    
     public static void main(String[] args) {
-//        javax.swing.SwingUtilities.invokeLater(GUI::new);
         MENU menu = new MENU();
         menu.setVisible(true);
     }

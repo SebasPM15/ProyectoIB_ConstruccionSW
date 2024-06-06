@@ -7,17 +7,12 @@ package GUI;
 import Negocio.Transcriptor;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author pilco
+ * La clase EspañolBraille es la ventana que permite al usuario traducir texto de Español a Braille
+ * y guardar las imágenes correspondientes de la traducción.
+ * 
  */
 public class EspañolBraille extends javax.swing.JFrame {
 
@@ -25,6 +20,10 @@ public class EspañolBraille extends javax.swing.JFrame {
     private boolean imagenSenalGuardada = false;
     private boolean imagenEspejoGuardada = false;
     
+    /**
+     * Constructor de la clase EspañolBraille.
+     * Inicializa los componentes y el transcriptor.
+     */
     public EspañolBraille() {
         initComponents();
         setTitle("Traducir de Español a Braille");
@@ -183,6 +182,11 @@ public class EspañolBraille extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método para manejar el evento del botón de guardar imagen en modo espejo.
+     * 
+     * @param evt Evento de acción
+     */    
     private void jBGuardarImgEspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarImgEspActionPerformed
         if(imagenEspejoGuardada)
         {
@@ -195,6 +199,11 @@ public class EspañolBraille extends javax.swing.JFrame {
         imagenSenalGuardada = true;
     }//GEN-LAST:event_jBGuardarImgEspActionPerformed
 
+    /**
+     * Método para manejar el evento del botón de traducir.
+     * 
+     * @param evt Evento de acción
+     */    
     private void jBTraducirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTraducirActionPerformed
         String textoEsp = jTAEntrada.getText();
         String textoBraille = transcriptor.traducirTexto(textoEsp);
@@ -203,6 +212,11 @@ public class EspañolBraille extends javax.swing.JFrame {
         imagenSenalGuardada = false;
     }//GEN-LAST:event_jBTraducirActionPerformed
 
+    /**
+     * Método para manejar el evento del botón de guardar imagen de señalización Braille.
+     * 
+     * @param evt Evento de acción
+     */    
     private void jBGuardarImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarImgActionPerformed
         if(imagenSenalGuardada)
         {
@@ -215,17 +229,29 @@ public class EspañolBraille extends javax.swing.JFrame {
         imagenSenalGuardada = true;
     }//GEN-LAST:event_jBGuardarImgActionPerformed
 
+    /**
+     * Método para manejar el evento del botón de limpiar pantalla.
+     * 
+     * @param evt Evento de acción
+     */    
     private void jBLimpiarPantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarPantaActionPerformed
         jTAEntrada.setText("");
         jTASalida.setText("");
     }//GEN-LAST:event_jBLimpiarPantaActionPerformed
 
+    /**
+     * Método para manejar el evento del botón de regresar al menú.
+     * 
+     * @param evt Evento de acción
+     */    
     private void jBRegMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegMenuActionPerformed
         this.dispose();
     }//GEN-LAST:event_jBRegMenuActionPerformed
     
     /**
-     * @param args the command line arguments
+     * Método principal que inicia la aplicación.
+     * 
+     * @param args Argumentos de la línea de comandos
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
