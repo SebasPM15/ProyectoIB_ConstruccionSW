@@ -16,15 +16,15 @@ import java.util.regex.Pattern;
  * Clase que proporciona funcionalidades para traducir texto entre el español y Braille.
  * 
  */
-public class Diccionario 
-{
+public class Diccionario {
 
     private static final Map<Character, String> caracteresEspBraille = new HashMap<>();
     private static final Map<String, Character> caracteresBrailleEsp = new HashMap<>();
 
     private static final String CARACTER_NUMERO = "⠼";
-    private static final Pattern PATRON_NUMERO_NO_NUMERO=  Pattern.compile("\\d+|\\D+");
+    private static final String CARACTER_SIMBOLO = "⠸";
     private static final String CARACTER_MAYUSCULAS = "⠨"; // Indicador de mayúscula
+    private static final Pattern PATRON_NUMERO_NO_NUMERO = Pattern.compile("\\d+|\\D+");
 
     static {
         caracteresEspBraille.put('a', "⠁");
@@ -64,6 +64,7 @@ public class Diccionario
         caracteresEspBraille.put('8', "⠓");
         caracteresEspBraille.put('9', "⠊");
         caracteresEspBraille.put('0', "⠚");
+
         caracteresEspBraille.put('.', "⠲");
         caracteresEspBraille.put(',', "⠂");
         caracteresEspBraille.put('?', "⠦");
@@ -75,11 +76,12 @@ public class Diccionario
 
         caracteresEspBraille.put('á', "⠷");
         caracteresEspBraille.put('é', "⠿");
-        caracteresEspBraille.put('í', "⠽");
+        caracteresEspBraille.put('í', "⠌");
         caracteresEspBraille.put('ó', "⠾");
-        caracteresEspBraille.put('ú', "⠷");
+        caracteresEspBraille.put('ú', "⠜");
         caracteresEspBraille.put('ü', "⠳");
         caracteresEspBraille.put('@', "⠈");
+        
 
         caracteresEspBraille.put('A', CARACTER_MAYUSCULAS + "⠁");
         caracteresEspBraille.put('B', CARACTER_MAYUSCULAS + "⠃");
@@ -138,16 +140,25 @@ public class Diccionario
         caracteresBrailleEsp.put("⠭", 'x');
         caracteresBrailleEsp.put("⠽", 'y');
         caracteresBrailleEsp.put("⠵", 'z');
-        caracteresBrailleEsp.put(CARACTER_NUMERO+"⠁", '1');
-        caracteresBrailleEsp.put(CARACTER_NUMERO+"⠼⠃", '2');
-        caracteresBrailleEsp.put(CARACTER_NUMERO+"⠼⠉", '3');
-        caracteresBrailleEsp.put(CARACTER_NUMERO+"⠼⠙", '4');
-        caracteresBrailleEsp.put(CARACTER_NUMERO+"⠼⠑", '5');
-        caracteresBrailleEsp.put(CARACTER_NUMERO+"⠼⠋", '6');
-        caracteresBrailleEsp.put(CARACTER_NUMERO+"⠼⠛", '7');
-        caracteresBrailleEsp.put(CARACTER_NUMERO+"⠼⠓", '8');
-        caracteresBrailleEsp.put(CARACTER_NUMERO+"⠼⠊", '9');
-        caracteresBrailleEsp.put(CARACTER_NUMERO+"⠼⠚", '0');
+
+        caracteresBrailleEsp.put("⠼⠁", '1');
+        caracteresBrailleEsp.put("⠼⠃", '2');
+        caracteresBrailleEsp.put("⠼⠉", '3');
+        caracteresBrailleEsp.put("⠼⠙", '4');
+        caracteresBrailleEsp.put("⠼⠑", '5');
+        caracteresBrailleEsp.put("⠼⠋", '6');
+        caracteresBrailleEsp.put("⠼⠛", '7');
+        caracteresBrailleEsp.put("⠼⠓", '8');
+        caracteresBrailleEsp.put("⠼⠊", '9');
+        caracteresBrailleEsp.put("⠼⠚", '0');
+
+        caracteresBrailleEsp.put("⠲", '.');
+        caracteresBrailleEsp.put("⠂", ',');
+        caracteresBrailleEsp.put("⠆", ';');
+        caracteresBrailleEsp.put("⠒", ':');
+        caracteresBrailleEsp.put("⠤", '-');
+        caracteresBrailleEsp.put(" ", ' ');
+
         caracteresBrailleEsp.put("⠲", '.');
         caracteresBrailleEsp.put("⠂", ',');
         caracteresBrailleEsp.put("⠦", '?');
@@ -159,12 +170,11 @@ public class Diccionario
 
         caracteresBrailleEsp.put("⠷", 'á');
         caracteresBrailleEsp.put("⠿", 'é');
-        caracteresBrailleEsp.put("⠽", 'í');
+        caracteresBrailleEsp.put("⠌", 'í');
         caracteresBrailleEsp.put("⠾", 'ó');
-        caracteresBrailleEsp.put("⠷", 'ú');
+        caracteresBrailleEsp.put("⠜", 'ú');
         caracteresBrailleEsp.put("⠳", 'ü');
         caracteresBrailleEsp.put("⠈", '@');
-
         caracteresBrailleEsp.put(CARACTER_MAYUSCULAS + "⠁", 'A');
         caracteresBrailleEsp.put(CARACTER_MAYUSCULAS + "⠃", 'B');
         caracteresBrailleEsp.put(CARACTER_MAYUSCULAS + "⠉", 'C');
@@ -192,6 +202,7 @@ public class Diccionario
         caracteresBrailleEsp.put(CARACTER_MAYUSCULAS + "⠭", 'X');
         caracteresBrailleEsp.put(CARACTER_MAYUSCULAS + "⠽", 'Y');
         caracteresBrailleEsp.put(CARACTER_MAYUSCULAS + "⠵", 'Z');
+
     }
 
     /**
